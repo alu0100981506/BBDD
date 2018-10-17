@@ -1,0 +1,238 @@
+SQL> SPOOL
+currently spooling to P1.lst
+SQL> HELP
+
+ HELP
+ ----
+
+ Accesses this command line help system. Enter HELP INDEX or ? INDEX
+ for a list of topics.
+
+ You can view SQL*Plus resources at
+     http://www.oracle.com/technology/documentation/
+
+ ******************************************************************************
+ **  Top 12.2 features:                                                      **
+ **    - Fast retrieval of data as CSV for use in applications like          **
+ **      SQL*Loader. Use SQLPLUS -M "CSV ON" or SET MARKUP CSV ON            **
+ **    - Improved defaults and optimizations for reports. Use SQLPLUS -F     **
+ **    - Command recall. Use SET HISTORY ON and HISTORY to list previous     **
+ **      commands.                                                           **
+ ******************************************************************************
+
+ HELP|? [topic]
+
+
+SQL> HELP SPOOL
+
+ SPOOL
+ -----
+
+ Stores query results in a file, or optionally sends the file to a printer.
+
+ SPO[OL] [file_name[.ext] [CRE[ATE] | REP[LACE] | APP[END]] | OFF | OUT]
+
+
+SQL> SELECT *
+  2  FROM DUAL;
+
+D                                                                               
+-                                                                               
+X                                                                               
+
+SQL> L
+  1  SELECT *
+  2* FROM DUAL
+SQL> L1
+  1* SELECT *
+SQL> L2
+  2* FROM DUAL
+SQL> L3
+SP2-0226: Invalid line number 
+SQL> L
+  1  SELECT *
+  2* FROM DUAL
+SQL> L 1 2
+  1  SELECT *
+  2* FROM DUAL
+SQL> I WHERE DUMMY = 'X'
+SQL> L
+  1  SELECT *
+  2  FROM DUAL
+  3* WHERE DUMMY = 'X'
+SQL> RUN
+  1  SELECT *
+  2  FROM DUAL
+  3* WHERE DUMMY = 'X'
+
+D                                                                               
+-                                                                               
+X                                                                               
+
+SQL> /
+
+D                                                                               
+-                                                                               
+X                                                                               
+
+SQL> DES DUAL
+SP2-0042: unknown command "DES DUAL" - rest of line ignored.
+SQL> DESCIBE DUAL
+SP2-0734: unknown command beginning "DESCIBE DU..." - rest of line ignored.
+SQL> DESBRIBE DUAL;
+SP2-0734: unknown command beginning "DESBRIBE D..." - rest of line ignored.
+SQL> DESCRIBE DUAL;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DUMMY                                              VARCHAR2(1)
+
+SQL> DESCRIBE DUAL
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DUMMY                                              VARCHAR2(1)
+
+SQL> SHOW ALL
+appinfo is OFF and set to "SQL*Plus"
+arraysize 15
+autocommit OFF
+autoprint OFF
+autorecovery OFF
+autotrace OFF
+blockterminator "." (hex 2e)
+btitle OFF and is the first few characters of the next SELECT statement
+cmdsep OFF
+colinvisible OFF
+colsep " "
+compatibility version NATIVE
+concat "." (hex 2e)
+copycommit 0
+COPYTYPECHECK is ON
+define "&" (hex 26)
+describe DEPTH 1 LINENUM OFF INDENT ON
+echo OFF
+editfile "afiedt.buf"
+embedded OFF
+errorlogging is OFF
+escape OFF
+escchar OFF
+exitcommit ON
+FEEDBACK ON for 6 or more rows
+flagger OFF
+flush ON
+fullcolname OFF
+heading ON
+headsep "|" (hex 7c)
+history is OFF
+instance "local"
+linesize 80
+lno 5
+loboffset 1
+lobprefetch 0
+logsource ""
+long 80
+longchunksize 80
+markup HTML OFF HEAD "<style type='text/css'> body {font:10pt Arial,Helvetica,sans-serif; color:black; background:White;} p {font:10pt Arial,Helvetica,sans-serif; color:black; background:White;} table,tr,td {font:10pt Arial,Helvetica,sans-serif; color:Black; background:#f7f7e7; padding:0px 0px 0px 0px; margin:0px 0px 0px 0px;} th {font:bold 10pt Arial,Helvetica,sans-serif; color:#336699; background:#cccc99; padding:0px 0px 0px 0px;} h1 {font:16pt Arial,Helvetica,Geneva,sans-serif; color:#336699; background-color:White; border-bottom:1px solid #cccc99; margin-top:0pt; margin-bottom:0pt; padding:0px 0px 0px 0px;-
+} h2 {font:bold 10pt Arial,Helvetica,Geneva,sans-serif; color:#336699; background-color:White; margin-top:4pt; margin-bottom:0pt;} a {font:9pt Arial,Helvetica,sans-serif; color:#663300; background:#ffffff; margin-top:0pt; margin-bottom:0pt; vertical-align:top;}</style><title>SQL*Plus Report</title>" BODY "" TABLE "border='1' width='90%' align='center' summary='Script output'" SPOOL OFF ENTMAP ON PREFORMAT OFF
+markup CSV OFF DELIMITER , QUOTE ON
+newpage 1
+null ""
+numformat ""
+numwidth 10
+pagesize 14
+PAUSE is OFF
+pno 1
+recsep WRAP
+recsepchar " " (hex 20)
+release 1202000100
+repfooter OFF and is NULL
+repheader OFF and is NULL
+rowprefetch 1
+securedcol is OFF
+serveroutput OFF
+shiftinout INVISIBLE
+showmode OFF
+spool ON
+sqlblanklines OFF
+sqlcase MIXED
+sqlcode 0
+sqlcontinue "> "
+sqlnumber ON
+sqlpluscompatibility 12.2.0
+sqlprefix "#" (hex 23)
+sqlprompt "SQL> "
+sqlterminator ";" (hex 3b)
+statementcache is 0
+suffix "sql"
+tab ON
+termout ON
+timing OFF
+trimout ON
+trimspool OFF
+ttitle OFF and is the first few characters of the next SELECT statement
+underline "-" (hex 2d)
+USER is "ALU0100981506"
+verify ON
+wrap : lines will be wrapped
+xmloptimizationcheck OFF
+SQL> SHOW LINESIZE
+linesize 80
+SQL> SET LINESIZE 130
+SQL> SELECT * FROM ASIGNATURA;
+
+       CAS A                                                  T           CUR        CAR         CT         CP         CL         
+---------- -------------------------------------------------- ---- ---------- ---------- ---------- ---------- ----------         
+         1 BASES DE DATOS                                     GII           3          7          3        1.5        1.5         
+         2 INTELIGENCIA ARTIFICIAL                            GII           3          4        1.5        1.5          3         
+         3 ALMACENES DE DATOS                                 MII           1          7        1.5          0        1.5         
+         4 MINERIA DE DATOS                                   MII           1          7        1.5          0        1.5         
+         5 INFORMATICA BASICA                                 GII           1          7          3        1.5        1.5         
+         6 ALGEBRA                                            GII           1          1          3          3          0         
+         7 CALCULO                                            GII           1          8          3          3          0         
+         8 OPTIMIZACION                                       GII           1          6          3        1.5        1.5         
+         9 GESTION DE RIESGOS                                 GII           3          4          3          0          3         
+        10 ASTRONOMIA                                         GF            2          3          3        1.5        1.5         
+        11 ENSENANZA MATEMATICA                               GM            2          5          6          0          0         
+
+       CAS A                                                  T           CUR        CAR         CT         CP         CL         
+---------- -------------------------------------------------- ---- ---------- ---------- ---------- ---------- ----------         
+        12 ANALISIS MATEMATICO                                GM            4          2        4.5          3          0         
+
+12 rows selected.
+
+SQL> SHOW PAGESIZE
+pagesize 14
+SQL> SET PAGESIZE 20;
+SQL> SELECT * FROM ASIGNATURA;
+
+       CAS A                                                  T           CUR        CAR         CT         CP         CL         
+---------- -------------------------------------------------- ---- ---------- ---------- ---------- ---------- ----------         
+         1 BASES DE DATOS                                     GII           3          7          3        1.5        1.5         
+         2 INTELIGENCIA ARTIFICIAL                            GII           3          4        1.5        1.5          3         
+         3 ALMACENES DE DATOS                                 MII           1          7        1.5          0        1.5         
+         4 MINERIA DE DATOS                                   MII           1          7        1.5          0        1.5         
+         5 INFORMATICA BASICA                                 GII           1          7          3        1.5        1.5         
+         6 ALGEBRA                                            GII           1          1          3          3          0         
+         7 CALCULO                                            GII           1          8          3          3          0         
+         8 OPTIMIZACION                                       GII           1          6          3        1.5        1.5         
+         9 GESTION DE RIESGOS                                 GII           3          4          3          0          3         
+        10 ASTRONOMIA                                         GF            2          3          3        1.5        1.5         
+        11 ENSENANZA MATEMATICA                               GM            2          5          6          0          0         
+        12 ANALISIS MATEMATICO                                GM            4          2        4.5          3          0         
+
+12 rows selected.
+
+SQL> HELP PASSWORD
+
+ PASSWORD
+ --------
+
+ Allows you to change a password without displaying it on an input device.
+
+ PASSW[ORD] [username]
+
+
+SQL> HOST ls
+
+SQL> HOST
+
+SQL> SPOOL OFF
