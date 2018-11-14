@@ -1,0 +1,467 @@
+SQL> SET PAGESIZE 25
+SQL> SET LINESIZE 100
+SQL> //EJERCICIOS DE CLASE: DIAS VIVIDOS, RAIZ CUADRADA DE 2^5, LONGITUD NOMBRE ASIGNATURAS
+SP2-0103: Nothing in SQL buffer to run.
+SQL> SELECT SYSDATE-TO_DATE('1997-08-24', 'YYYY-MM-DD') "DIAS DE VIDA";
+SELECT SYSDATE-TO_DATE('1997-08-24', 'YYYY-MM-DD') "DIAS DE VIDA"
+                                                                *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT SYSDATE-TO_DATE('1997-08-24', 'YYYY-MM-DD') "DIAS DE VIDA"
+  2  FROM DUAL;
+
+DIAS DE VIDA                                                                                        
+------------                                                                                        
+  7752.56212                                                                                        
+
+SQL> //
+
+DIAS DE VIDA                                                                                        
+------------                                                                                        
+  7752.56227                                                                                        
+
+SQL> SELECT SQRT(POW(2,5))
+  2  FROM DUAL;
+SELECT SQRT(POW(2,5))
+            *
+ERROR at line 1:
+ORA-00904: "POW": invalid identifier 
+
+
+SQL> SELECT SQRT(POWER(2,5))
+  2  FROM DUAL;
+
+SQRT(POWER(2,5))                                                                                    
+----------------                                                                                    
+      5.65685425                                                                                    
+
+SQL> SELECT SQRT(POWER(2,5)) "RAIZ 2^5"
+  2  FROM DUAL;
+
+  RAIZ 2^5                                                                                          
+----------                                                                                          
+5.65685425                                                                                          
+
+SQL> SELECT LENGHT(A), A
+  2  FROM ASIGNATURA;
+SELECT LENGHT(A), A
+       *
+ERROR at line 1:
+ORA-00904: "LENGHT": invalid identifier 
+
+
+SQL> SELECT A, LENGTH(A)
+  2  FROM ASIGNATURA;
+
+A                                                   LENGTH(A)                                       
+-------------------------------------------------- ----------                                       
+BASES DE DATOS                                             14                                       
+INTELIGENCIA ARTIFICIAL                                    23                                       
+ALMACENES DE DATOS                                         18                                       
+MINERIA DE DATOS                                           16                                       
+INFORMATICA BASICA                                         18                                       
+ALGEBRA                                                     7                                       
+CALCULO                                                     7                                       
+OPTIMIZACION                                               12                                       
+GESTION DE RIESGOS                                         18                                       
+ASTRONOMIA                                                 10                                       
+ENSENANZA DE LA MATEMATICA                                 26                                       
+ANALISIS COMPLETO                                          17                                       
+
+12 rows selected.
+
+SQL> SELECT A, LENGTH(A) "LONGITUD"
+  2  FROM ASIGNATURA;
+
+A                                                    LONGITUD                                       
+-------------------------------------------------- ----------                                       
+BASES DE DATOS                                             14                                       
+INTELIGENCIA ARTIFICIAL                                    23                                       
+ALMACENES DE DATOS                                         18                                       
+MINERIA DE DATOS                                           16                                       
+INFORMATICA BASICA                                         18                                       
+ALGEBRA                                                     7                                       
+CALCULO                                                     7                                       
+OPTIMIZACION                                               12                                       
+GESTION DE RIESGOS                                         18                                       
+ASTRONOMIA                                                 10                                       
+ENSENANZA DE LA MATEMATICA                                 26                                       
+ANALISIS COMPLETO                                          17                                       
+
+12 rows selected.
+
+SQL> REM --------------1
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE CAR LIKE 'A%';
+
+no rows selected
+
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE CAR IN (SELECT CAR FROM AREA WHERE AR LIKE 'A%');
+
+A                                                                                                   
+--------------------------------------------------                                                  
+ALGEBRA                                                                                             
+ANALISIS COMPLETO                                                                                   
+ASTRONOMIA                                                                                          
+
+SQL> REM ----2
+SQL> SELECT A
+  2  FROM ASINATURA
+  3  WHERE CAR IN (SELECT CAR IN AREA WHERE AR LIKE '%A');
+WHERE CAR IN (SELECT CAR IN AREA WHERE AR LIKE '%A')
+                         *
+ERROR at line 3:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT A
+  2  FROM ASINATURA
+  3  WHERE CAR IN (SELECT CAR FROM AREA WHERE AR LIKE '%A');
+FROM ASINATURA
+     *
+ERROR at line 2:
+ORA-00942: table or view does not exist 
+
+
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE CAR IN (SELECT CAR FROM AREA WHERE AR LIKE '%A');
+
+A                                                                                                   
+--------------------------------------------------                                                  
+ALGEBRA                                                                                             
+ASTRONOMIA                                                                                          
+ENSENANZA DE LA MATEMATICA                                                                          
+CALCULO                                                                                             
+
+SQL> SELECT *
+  2  FRM AREA;
+FRM AREA
+*
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT *
+  2  FROM AREA;
+
+       CAR AR                                                                   CD                  
+---------- ------------------------------------------------------------ ----------                  
+         1 ALGEBRA                                                               4                  
+         2 ANALISIS MATEMATICO                                                   1                  
+         3 ASTRONOMIA Y ASTROFISICA                                              2                  
+         4 CIENCIAS DE LA COMPUTACION E INTELIGENCIA ARTIFICIAL                  3                  
+         5 DIDACTICA DE LA MATEMATICA                                            1                  
+         6 ESTAIDSTICA E INVESTIGACION OPERATIVAS                                3                  
+         7 LENGUAJES Y SISTEMAS INFORMATICOS                                     3                  
+         8 MATEMATICA APLICADA                                                   1                  
+
+8 rows selected.
+
+SQL> SELECT *
+  2  FROM ASIGNATURA;
+
+       CAS A                                                  T           CUR        CAR         CT 
+---------- -------------------------------------------------- ---- ---------- ---------- ---------- 
+        CP         CL                                                                               
+---------- ----------                                                                               
+         1 BASES DE DATOS                                     GII           3          7          3 
+       1.5        1.5                                                                               
+                                                                                                    
+         2 INTELIGENCIA ARTIFICIAL                            GII           3          4        1.5 
+       1.5          3                                                                               
+                                                                                                    
+         3 ALMACENES DE DATOS                                 MII           1          7        1.5 
+         0        1.5                                                                               
+                                                                                                    
+         4 MINERIA DE DATOS                                   MII           1          7        1.5 
+         0        1.5                                                                               
+                                                                                                    
+         5 INFORMATICA BASICA                                 GII           1          7          3 
+       1.5        1.5                                                                               
+                                                                                                    
+         6 ALGEBRA                                            GII           1          1          3 
+         3          0                                                                               
+                                                                                                    
+         7 CALCULO                                            GII           1          8          3 
+         3          0                                                                               
+
+       CAS A                                                  T           CUR        CAR         CT 
+---------- -------------------------------------------------- ---- ---------- ---------- ---------- 
+        CP         CL                                                                               
+---------- ----------                                                                               
+                                                                                                    
+         8 OPTIMIZACION                                       GII           1          6          3 
+       1.5        1.5                                                                               
+                                                                                                    
+         9 GESTION DE RIESGOS                                 GII           3          4          3 
+         0          3                                                                               
+                                                                                                    
+        10 ASTRONOMIA                                         GF            2          3          3 
+       1.5        1.5                                                                               
+                                                                                                    
+        11 ENSENANZA DE LA MATEMATICA                         GM            2          5          6 
+         0          0                                                                               
+                                                                                                    
+        12 ANALISIS COMPLETO                                  GM            4          2        4.5 
+         3          0                                                                               
+                                                                                                    
+
+12 rows selected.
+
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE CAR IN (SELECT CAR FROM AREA WHERE AR LIKE '%A');
+
+A                                                                                                   
+--------------------------------------------------                                                  
+ALGEBRA                                                                                             
+ASTRONOMIA                                                                                          
+ENSENANZA DE LA MATEMATICA                                                                          
+CALCULO                                                                                             
+
+SQL> SELECT *
+  2  FROM ASIGNATURA;
+
+       CAS A                                                  T           CUR        CAR         CT 
+---------- -------------------------------------------------- ---- ---------- ---------- ---------- 
+        CP         CL                                                                               
+---------- ----------                                                                               
+         1 BASES DE DATOS                                     GII           3          7          3 
+       1.5        1.5                                                                               
+                                                                                                    
+         2 INTELIGENCIA ARTIFICIAL                            GII           3          4        1.5 
+       1.5          3                                                                               
+                                                                                                    
+         3 ALMACENES DE DATOS                                 MII           1          7        1.5 
+         0        1.5                                                                               
+                                                                                                    
+         4 MINERIA DE DATOS                                   MII           1          7        1.5 
+         0        1.5                                                                               
+                                                                                                    
+         5 INFORMATICA BASICA                                 GII           1          7          3 
+       1.5        1.5                                                                               
+                                                                                                    
+         6 ALGEBRA                                            GII           1          1          3 
+         3          0                                                                               
+                                                                                                    
+         7 CALCULO                                            GII           1          8          3 
+         3          0                                                                               
+
+       CAS A                                                  T           CUR        CAR         CT 
+---------- -------------------------------------------------- ---- ---------- ---------- ---------- 
+        CP         CL                                                                               
+---------- ----------                                                                               
+                                                                                                    
+         8 OPTIMIZACION                                       GII           1          6          3 
+       1.5        1.5                                                                               
+                                                                                                    
+         9 GESTION DE RIESGOS                                 GII           3          4          3 
+         0          3                                                                               
+                                                                                                    
+        10 ASTRONOMIA                                         GF            2          3          3 
+       1.5        1.5                                                                               
+                                                                                                    
+        11 ENSENANZA DE LA MATEMATICA                         GM            2          5          6 
+         0          0                                                                               
+                                                                                                    
+        12 ANALISIS COMPLETO                                  GM            4          2        4.5 
+         3          0                                                                               
+                                                                                                    
+
+12 rows selected.
+
+SQL> SELECT *
+  2  FROM ASIGNATURA;
+
+       CAS A                                                  T           CUR        CAR         CT 
+---------- -------------------------------------------------- ---- ---------- ---------- ---------- 
+        CP         CL                                                                               
+---------- ----------                                                                               
+         1 BASES DE DATOS                                     GII           3          7          3 
+       1.5        1.5                                                                               
+                                                                                                    
+         2 INTELIGENCIA ARTIFICIAL                            GII           3          4        1.5 
+       1.5          3                                                                               
+                                                                                                    
+         3 ALMACENES DE DATOS                                 MII           1          7        1.5 
+         0        1.5                                                                               
+                                                                                                    
+         4 MINERIA DE DATOS                                   MII           1          7        1.5 
+         0        1.5                                                                               
+                                                                                                    
+         5 INFORMATICA BASICA                                 GII           1          7          3 
+       1.5        1.5                                                                               
+                                                                                                    
+         6 ALGEBRA                                            GII           1          1          3 
+         3          0                                                                               
+                                                                                                    
+         7 CALCULO                                            GII           1          8          3 
+         3          0                                                                               
+
+       CAS A                                                  T           CUR        CAR         CT 
+---------- -------------------------------------------------- ---- ---------- ---------- ---------- 
+        CP         CL                                                                               
+---------- ----------                                                                               
+                                                                                                    
+         8 OPTIMIZACION                                       GII           1          6          3 
+       1.5        1.5                                                                               
+                                                                                                    
+         9 GESTION DE RIESGOS                                 GII           3          4          3 
+         0          3                                                                               
+                                                                                                    
+        10 ASTRONOMIA                                         GF            2          3          3 
+       1.5        1.5                                                                               
+                                                                                                    
+        11 ENSENANZA DE LA MATEMATICA                         GM            2          5          6 
+         0          0                                                                               
+                                                                                                    
+        12 ANALISIS COMPLETO                                  GM            4          2        4.5 
+         3          0                                                                               
+                                                                                                    
+
+12 rows selected.
+
+SQL> SET LINESIZE 120
+SQL> SELECT *
+  2  SET LINESIZE 120
+  3  
+SQL> SELECT *
+  2  FROM ASIGNATURA;
+
+       CAS A                                                  T           CUR        CAR         CT         CP          
+---------- -------------------------------------------------- ---- ---------- ---------- ---------- ----------          
+        CL                                                                                                              
+----------                                                                                                              
+         1 BASES DE DATOS                                     GII           3          7          3        1.5          
+       1.5                                                                                                              
+                                                                                                                        
+         2 INTELIGENCIA ARTIFICIAL                            GII           3          4        1.5        1.5          
+         3                                                                                                              
+                                                                                                                        
+         3 ALMACENES DE DATOS                                 MII           1          7        1.5          0          
+       1.5                                                                                                              
+                                                                                                                        
+         4 MINERIA DE DATOS                                   MII           1          7        1.5          0          
+       1.5                                                                                                              
+                                                                                                                        
+         5 INFORMATICA BASICA                                 GII           1          7          3        1.5          
+       1.5                                                                                                              
+                                                                                                                        
+         6 ALGEBRA                                            GII           1          1          3          3          
+         0                                                                                                              
+                                                                                                                        
+         7 CALCULO                                            GII           1          8          3          3          
+         0                                                                                                              
+
+       CAS A                                                  T           CUR        CAR         CT         CP          
+---------- -------------------------------------------------- ---- ---------- ---------- ---------- ----------          
+        CL                                                                                                              
+----------                                                                                                              
+                                                                                                                        
+         8 OPTIMIZACION                                       GII           1          6          3        1.5          
+       1.5                                                                                                              
+                                                                                                                        
+         9 GESTION DE RIESGOS                                 GII           3          4          3          0          
+         3                                                                                                              
+                                                                                                                        
+        10 ASTRONOMIA                                         GF            2          3          3        1.5          
+       1.5                                                                                                              
+                                                                                                                        
+        11 ENSENANZA DE LA MATEMATICA                         GM            2          5          6          0          
+         0                                                                                                              
+                                                                                                                        
+        12 ANALISIS COMPLETO                                  GM            4          2        4.5          3          
+         0                                                                                                              
+                                                                                                                        
+
+12 rows selected.
+
+SQL> SET LINESIZE 150
+SQL> SELECT *
+  2  FROM ASIGNATURA;
+
+       CAS A                                                  T           CUR        CAR         CT         CP         CL                             
+---------- -------------------------------------------------- ---- ---------- ---------- ---------- ---------- ----------                             
+         1 BASES DE DATOS                                     GII           3          7          3        1.5        1.5                             
+         2 INTELIGENCIA ARTIFICIAL                            GII           3          4        1.5        1.5          3                             
+         3 ALMACENES DE DATOS                                 MII           1          7        1.5          0        1.5                             
+         4 MINERIA DE DATOS                                   MII           1          7        1.5          0        1.5                             
+         5 INFORMATICA BASICA                                 GII           1          7          3        1.5        1.5                             
+         6 ALGEBRA                                            GII           1          1          3          3          0                             
+         7 CALCULO                                            GII           1          8          3          3          0                             
+         8 OPTIMIZACION                                       GII           1          6          3        1.5        1.5                             
+         9 GESTION DE RIESGOS                                 GII           3          4          3          0          3                             
+        10 ASTRONOMIA                                         GF            2          3          3        1.5        1.5                             
+        11 ENSENANZA DE LA MATEMATICA                         GM            2          5          6          0          0                             
+        12 ANALISIS COMPLETO                                  GM            4          2        4.5          3          0                             
+
+12 rows selected.
+
+SQL> SELECT *
+  2  FROM AREA;
+
+       CAR AR                                                                   CD                                                                    
+---------- ------------------------------------------------------------ ----------                                                                    
+         1 ALGEBRA                                                               4                                                                    
+         2 ANALISIS MATEMATICO                                                   1                                                                    
+         3 ASTRONOMIA Y ASTROFISICA                                              2                                                                    
+         4 CIENCIAS DE LA COMPUTACION E INTELIGENCIA ARTIFICIAL                  3                                                                    
+         5 DIDACTICA DE LA MATEMATICA                                            1                                                                    
+         6 ESTAIDSTICA E INVESTIGACION OPERATIVAS                                3                                                                    
+         7 LENGUAJES Y SISTEMAS INFORMATICOS                                     3                                                                    
+         8 MATEMATICA APLICADA                                                   1                                                                    
+
+8 rows selected.
+
+SQL> UPDATE AREA
+  2  SET AR = 'ESTADISTICA E INVESTIGACION OPERATIVA'
+  3  WHERE CAR = 6;
+
+1 row updated.
+
+SQL> SELECT *
+  2  FROM AREA;
+
+       CAR AR                                                                   CD                                                                    
+---------- ------------------------------------------------------------ ----------                                                                    
+         1 ALGEBRA                                                               4                                                                    
+         2 ANALISIS MATEMATICO                                                   1                                                                    
+         3 ASTRONOMIA Y ASTROFISICA                                              2                                                                    
+         4 CIENCIAS DE LA COMPUTACION E INTELIGENCIA ARTIFICIAL                  3                                                                    
+         5 DIDACTICA DE LA MATEMATICA                                            1                                                                    
+         6 ESTADISTICA E INVESTIGACION OPERATIVA                                 3                                                                    
+         7 LENGUAJES Y SISTEMAS INFORMATICOS                                     3                                                                    
+         8 MATEMATICA APLICADA                                                   1                                                                    
+
+8 rows selected.
+
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE CAR IN (SELECT CAR FROM AREA WHERE AR LIKE '%A');
+
+A                                                                                                                                                     
+--------------------------------------------------                                                                                                    
+ALGEBRA                                                                                                                                               
+ASTRONOMIA                                                                                                                                            
+ENSENANZA DE LA MATEMATICA                                                                                                                            
+OPTIMIZACION                                                                                                                                          
+CALCULO                                                                                                                                               
+
+SQL> REM ----3
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE A LIKE '%DATOS%';
+
+A                                                                                                                                                     
+--------------------------------------------------                                                                                                    
+BASES DE DATOS                                                                                                                                        
+ALMACENES DE DATOS                                                                                                                                    
+MINERIA DE DATOS                                                                                                                                      
+
+SQL> SPOOL OFF
