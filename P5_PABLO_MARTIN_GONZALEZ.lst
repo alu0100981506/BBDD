@@ -465,3 +465,104 @@ ALMACENES DE DATOS
 MINERIA DE DATOS                                                                                                                                      
 
 SQL> SPOOL OFF
+SQL> REM ---4
+SQL> SELECT DNI
+  2  FROM PROFESOR
+  3  WHERE P LIKE '___R%';
+
+       DNI                                                                                                              
+----------                                                                                                              
+      3333                                                                                                              
+
+SQL> SELECT DNI
+  2  FROM PROFESOR
+  3  WHERE P LIKE '__R%';
+
+       DNI                                                                                                              
+----------                                                                                                              
+      2222                                                                                                              
+      4444                                                                                                              
+      6666                                                                                                              
+      7777                                                                                                              
+
+SQL> SELECT DISTINC DNI
+  2  FROM PROFESOR
+  3  WHERE LENGTN (P) <= 5;
+WHERE LENGTN (P) <= 5
+      *
+ERROR at line 3:
+ORA-00904: "LENGTN": invalid identifier 
+
+
+SQL> SELECT DISTINC DNI
+  2  FROM PROFESOR
+  3  WHERE LENGTH (P) <= 5;
+SELECT DISTINC DNI
+       *
+ERROR at line 1:
+ORA-00904: "DISTINC": invalid identifier 
+
+
+SQL> SELECT DISTINCT DNI
+  2  FROM PROFESOR
+  3  WHERE LENGTH (P) <= 5;
+
+       DNI                                                                                                              
+----------                                                                                                              
+      1111                                                                                                              
+      3333                                                                                                              
+      4444                                                                                                              
+      5555                                                                                                              
+      7777                                                                                                              
+      1010                                                                                                              
+
+6 rows selected.
+
+SQL> REM ----7
+SQL> REM ----6
+SQL> SELECT DISTINCT DNI
+  2  FROM PROFESOR
+  3  WHERE LENGTH (P) > 5;
+
+       DNI                                                                                                              
+----------                                                                                                              
+      2222                                                                                                              
+      6666                                                                                                              
+      8888                                                                                                              
+      9999                                                                                                              
+      2020                                                                                                              
+      3030                                                                                                              
+
+6 rows selected.
+
+SQL> SELECT P
+  2  FROM PROFESOR
+  3  WHERE DNI IN (SELECT DNI FROM PLAN_DOCENTE WHERE FF IS NULL);
+
+P                                                                                                                       
+------------------------------------------------------------                                                            
+DAVID                                                                                                                   
+JUAN                                                                                                                    
+SOLEDAD                                                                                                                 
+CARLOS                                                                                                                  
+JOSE MANUEL                                                                                                             
+PEDRO                                                                                                                   
+MARIA                                                                                                                   
+IVAN                                                                                                                    
+MARIO                                                                                                                   
+FRANCISCO                                                                                                               
+ANGELA                                                                                                                  
+
+11 rows selected.
+
+SQL> REM --8
+SQL> SELECT P
+  2  FROM PROFESOR
+  3  WHERE DNI IN (SELECT DNI FROM PLAN_DOCENTE WHERE CAS=8);
+
+P                                                                                                                       
+------------------------------------------------------------                                                            
+JUAN                                                                                                                    
+JOSE MANUEL                                                                                                             
+
+SQL> SPOOL OFF

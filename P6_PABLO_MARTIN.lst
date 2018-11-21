@@ -1,0 +1,394 @@
+SQL> SPOOL
+currently spooling to P6_PABLO_MARTIN.lst
+SQL> SELECT SYSDATE
+  2  FROM DUAL;
+
+SYSDATE                                                                                                                 
+---------                                                                                                               
+21-NOV-18                                                                                                               
+
+SQL> SELECT TO_CHAR(SYSDATE, 'DDD')
+  2  FROM DUAL;
+
+TO_                                                                                                                     
+---                                                                                                                     
+325                                                                                                                     
+
+SQL> SELECT TO_CHAR(SYSDATE, 'D')
+  2  FROM DUAL;
+
+T                                                                                                                       
+-                                                                                                                       
+4                                                                                                                       
+
+SQL> SELECT TO_CHAR(SYSDATE, 'WW')
+  2  FROM DUAL;
+
+TO                                                                                                                      
+--                                                                                                                      
+47                                                                                                                      
+
+SQL> SELECT TO_CHAR(SYSDATE, 'W')
+  2  FROM DUAL;
+
+T                                                                                                                       
+-                                                                                                                       
+3                                                                                                                       
+
+SQL> SELECT TO_CHAR(SYSDATE, 'WWW')
+  2  FROM DUAL;
+
+TO_                                                                                                                     
+---                                                                                                                     
+473                                                                                                                     
+
+SQL> REM **SI PONGO SELECT TO_CHAR(SYSDATE, 'DDD') FROM DUAL; ME DEVUELVE LOS DIAS DEL ANIO QUE LLEVAMOS
+SQL> REM ** SI PONGO SOLO DD ME DEVUELVE EL DIA DEL MES ACTUL
+SQL> REM ** SI PONGO SOLO D ME DEVUELVE EL DIA DE LA SEMANA ACTUAL SIENDO 1 EL DOMINGO
+SQL> SELECT
+  2  
+SQL> SELECT EXTRACT(YEAR FROM FI)
+  2  FROM PLAN_DOCENTE;
+
+EXTRACT(YEARFROMFI)                                                                                                     
+-------------------                                                                                                     
+               2005                                                                                                     
+               2008                                                                                                     
+               2009                                                                                                     
+               2007                                                                                                     
+               2009                                                                                                     
+               2008                                                                                                     
+               2006                                                                                                     
+               2009                                                                                                     
+               2009                                                                                                     
+               2008                                                                                                     
+               2009                                                                                                     
+               2011                                                                                                     
+               2008                                                                                                     
+               2010                                                                                                     
+               2010                                                                                                     
+               2008                                                                                                     
+               2010                                                                                                     
+               2009                                                                                                     
+               2010                                                                                                     
+
+19 rows selected.
+
+SQL> SELECT *
+  2  FROM PLAN_DOCENTE;
+
+       DNI        CAS        CTA        CPA        CLA FI        FF                                                     
+---------- ---------- ---------- ---------- ---------- --------- ---------                                              
+      4444          1          3        1.5        1.5 01-SEP-11                                                        
+      4444          4        1.5          0        1.5 01-SEP-08 31-AUG-10                                              
+      4444          5          3          0          0 01-SEP-10                                                        
+      1111          8          3        1.5        1.5 01-SEP-07 31-AUG-09                                              
+      1111          8          3          0          0 01-SEP-09                                                        
+      3030          8          0        1.5        1.5 01-SEP-09                                                        
+      2222          4        1.5          0        1.5 01-SEP-09                                                        
+      1010          2        1.5        1.5          3 01-SEP-05 31-AUG-08                                              
+      2222          3        1.5          0        1.5 01-SEP-06 31-AUG-07                                              
+      3333          2        1.5        1.5          3 01-SEP-08                                                        
+      1010          9          3          0          3 01-SEP-08 31-AUG-09                                              
+      1010          9        1.5          0        1.5 01-SEP-09                                                        
+      9999          7          3          3          0 01-SEP-10                                                        
+      5555          6          3          3          0 31-MAR-10                                                        
+      6666         10          3        1.5        1.5 01-SEP-08 31-AUG-11                                              
+      8888         11          6          0          0 01-SEP-09                                                        
+      2020          3        1.5          0        1.5 01-SEP-08                                                        
+      7777         12        4.5          3          0 01-SEP-10                                                        
+      3333          9        1.5          0        1.5 01-SEP-09                                                        
+
+19 rows selected.
+
+SQL> SELECT EXTRACT(YEAR FROM FF)
+  2  FROM PLAN_DOCENTE;
+
+EXTRACT(YEARFROMFF)                                                                                                     
+-------------------                                                                                                     
+                                                                                                                        
+               2010                                                                                                     
+                                                                                                                        
+               2009                                                                                                     
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+               2008                                                                                                     
+               2007                                                                                                     
+                                                                                                                        
+               2009                                                                                                     
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+               2011                                                                                                     
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+
+19 rows selected.
+
+SQL> SELECT EXTRACT(MONTH FROM FI)
+  2  FROM PLAN_DOCENTE;
+
+EXTRACT(MONTHFROMFI)                                                                                                    
+--------------------                                                                                                    
+                   9                                                                                                    
+                   9                                                                                                    
+                   9                                                                                                    
+                   9                                                                                                    
+                   9                                                                                                    
+                   9                                                                                                    
+                   9                                                                                                    
+                   9                                                                                                    
+                   9                                                                                                    
+                   9                                                                                                    
+                   9                                                                                                    
+                   9                                                                                                    
+                   9                                                                                                    
+                   9                                                                                                    
+                   3                                                                                                    
+                   9                                                                                                    
+                   9                                                                                                    
+                   9                                                                                                    
+                   9                                                                                                    
+
+19 rows selected.
+
+SQL> SELECT EXTRACT(DAY FROM FI)
+  2  FROM PLAN_DOCENTE;
+
+EXTRACT(DAYFROMFI)                                                                                                      
+------------------                                                                                                      
+                 1                                                                                                      
+                 1                                                                                                      
+                 1                                                                                                      
+                 1                                                                                                      
+                 1                                                                                                      
+                 1                                                                                                      
+                 1                                                                                                      
+                 1                                                                                                      
+                 1                                                                                                      
+                 1                                                                                                      
+                 1                                                                                                      
+                 1                                                                                                      
+                 1                                                                                                      
+                 1                                                                                                      
+                31                                                                                                      
+                 1                                                                                                      
+                 1                                                                                                      
+                 1                                                                                                      
+                 1                                                                                                      
+
+19 rows selected.
+
+SQL> REM *1
+SQL> SELECT SYSDATE
+  2  FROM DUAL
+  3  ;
+
+SYSDATE                                                                                                                 
+---------                                                                                                               
+21-NOV-18                                                                                                               
+
+SQL> REM *2
+SQL> SELECT TO_CHAR(SYSDATE, 'HH:MI:SS')
+  2  FROM DUAL;
+
+TO_CHAR(                                                                                                                
+--------                                                                                                                
+01:21:25                                                                                                                
+
+SQL> 
+SQL> SELECT TO_CHAR(SYSDATE, 'DAY:MM:YY')
+  2  FROM DUAL;
+
+TO_CHAR(SYSDATE,'DAY:MM:YY')                                                                                            
+------------------------------------------                                                                              
+WEDNESDAY:11:18                                                                                                         
+
+SQL> SELECT TO_CHAR(SYSDATE, 'DAY:DD:MON')
+  2  FROM DUAL;
+
+TO_CHAR(SYSDATE,'DAY:DD:MON')                                                                                           
+----------------------------------------------------                                                                    
+WEDNESDAY:21:NOV                                                                                                        
+
+SQL> SELECT TO_CHAR(SYSDATE, 'DAY:DD:MON:YY')
+  2  FROM DUAL;
+
+TO_CHAR(SYSDATE,'DAY:DD:MON:YY')                                                                                        
+-------------------------------------------------------                                                                 
+WEDNESDAY:21:NOV:18                                                                                                     
+
+SQL> SELECT TO_CHAR(SYSDATE, 'DAY:DD:MM:YYYY')
+  2  FROM DUAL;
+
+TO_CHAR(SYSDATE,'DAY:DD:MM:YYYY')                                                                                       
+-----------------------------------------------                                                                         
+WEDNESDAY:21:11:2018                                                                                                    
+
+SQL> REM *4
+SQL> SELECT TO_CHAR(SYSDATE, 'HH24:MI:SS')
+  2  FROM DUAL;
+
+TO_CHAR(                                                                                                                
+--------                                                                                                                
+13:29:12                                                                                                                
+
+SQL> 
+SQL> REM *5
+SQL> SELECT (SELECT SYSDATE FROM DUAL)-FI FROM PLAN_DOCENTE WHERE DNI = 8888 AND CAS = 11;
+
+(SELECTSYSDATEFROMDUAL)-FI                                                                                              
+--------------------------                                                                                              
+                3368.56404                                                                                              
+
+SQL> SELECT P FROM PROFESOR WHERE DNI IN
+  2  (SELECT DNI FROM PLAN_DOCENTE WHERE FF-FI > 365);
+
+P                                                                                                                       
+------------------------------------------------------------                                                            
+JUAN                                                                                                                    
+MARIA                                                                                                                   
+CARMEN                                                                                                                  
+DAVID                                                                                                                   
+
+SQL> REM *7
+SQL> SELECT COUNT(P)
+  2  FROM PROFESOR NATUTAL JOIN AREA NATURAL JOIN DEPARTAMENTO
+  3  WHERE D = 'ASTROFISICA';
+WHERE D = 'ASTROFISICA'
+*
+ERROR at line 3:
+ORA-00905: missing keyword 
+
+
+SQL> SELECT COUNT(P)
+  2  FROM PROFESOR NATUTAL JOIN AREA NATURAL JOIN DEPARTAMENTO
+  3  WHERE D = 'ASTROFISICA';
+WHERE D = 'ASTROFISICA'
+*
+ERROR at line 3:
+ORA-00905: missing keyword 
+
+
+SQL> SELECT COUNT(P)
+  2  FROM PROFESOR NATUTAL JOIN AREA NATURAL JOIN DEPARTAMENTO
+  3  WHERE D='ASTROFISICA';
+WHERE D='ASTROFISICA'
+*
+ERROR at line 3:
+ORA-00905: missing keyword 
+
+
+SQL> SELECT COUNT(P)
+  2  
+SQL> SELECT *
+  2  FROM DEPARTAMENTO;
+
+        CD D                                                                                                            
+---------- ------------------------------------------------------------                                                 
+         1 ANALISIS MATEMATICO                                                                                          
+         2 ASTROFISICA                                                                                                  
+         3 ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION                                                           
+         4 MATEMATICA FUNDAMENTAL                                                                                       
+
+SQL> SELECT COUNT(P)
+  2  FROM PROFESOR NATUTAL JOIN AREA NATURAL JOIN DEPARTAMENTO
+  3  WHERE D='ASTROFISICA';
+WHERE D='ASTROFISICA'
+*
+ERROR at line 3:
+ORA-00905: missing keyword 
+
+
+SQL> SELECT COUNT(P)
+  2  
+SQL> SELECT *
+  2  FROM PROFESOR NATUTAL JOIN AREA NATURAL JOIN DEPARTAMENTO;
+FROM PROFESOR NATUTAL JOIN AREA NATURAL JOIN DEPARTAMENTO
+                                                        *
+ERROR at line 2:
+ORA-00905: missing keyword 
+
+
+SQL> SELECT COUNT(P)
+  2  FROM PROFESOR NATURAL JOIN AREA NATURAL JOIN DEPARTAMENTO
+  3  WHERE D='ASTROFISICA';
+
+  COUNT(P)                                                                                                              
+----------                                                                                                              
+         1                                                                                                              
+
+SQL> REM *8
+SQL> SELECT D, COUNT(DNI)
+  2  FROM DEPARTAMENTO, PROFESOR, AREA
+  3  WHERE (DEPARTAMENTO.CD = AREA.CD AND PROFESOR.CAR = AREA.CAR)
+  4  GROUP BY D ASC;
+GROUP BY D ASC
+           *
+ERROR at line 4:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT D, COUNT(DNI)
+  2  FROM DEPARTAMENTO, PROFESOR, AREA
+  3  WHERE (DEPARTAMENTO.CD = AREA.CD AND PROFESOR.CAR = AREA.CAR)
+  4  GROUP BY D  ORDER BY D;
+
+D                                                            COUNT(DNI)                                                 
+------------------------------------------------------------ ----------                                                 
+ANALISIS MATEMATICO                                                   3                                                 
+ASTROFISICA                                                           1                                                 
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION                    7                                                 
+MATEMATICA FUNDAMENTAL                                                1                                                 
+
+SQL> SELECT COUNT(T)
+  2  FROM ASIGNATURAS WHERE CAS IN
+  3  (SELECT CAS FROM AREA, DEPARTAMENTO
+  4  WHERE AREA.CD = DEPARTAMENTO.CD AND D='ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION');
+FROM ASIGNATURAS WHERE CAS IN
+     *
+ERROR at line 2:
+ORA-00942: table or view does not exist 
+
+
+SQL> SELECT COUNT(T)
+  2  FROM ASIGNATURAS WHERE CAS IN
+  3  (SELECT CAS FROM AREA, DEPARTAMENTO
+  4  WHERE AREA.CD = DEPARTAMENTO.CD AND D='ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION');
+FROM ASIGNATURAS WHERE CAS IN
+     *
+ERROR at line 2:
+ORA-00942: table or view does not exist 
+
+
+SQL> SELECT COUNT(T)
+  2  FROM ASIGNATURA WHERE CAS IN
+  3  WHERE AREA.CD = DEPARTAMENTO.CD AND D='ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION');
+WHERE AREA.CD = DEPARTAMENTO.CD AND D='ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION')
+*
+ERROR at line 3:
+ORA-00936: missing expression 
+
+
+SQL> SELECT COUNT(T)
+  2  FROM ASIGNATURA WHERE CAS IN
+  3  (SELECT CAS FROM AREA, DEPARTAMENTO
+  4  WHERE AREA.CD = DEPARTAMENTO.CD AND D='ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION');
+
+  COUNT(T)                                                                                                              
+----------                                                                                                              
+        12                                                                                                              
+
+SQL> SELECT DISTINCT(COUNT(T))
+  2  FROM ASIGNATURA WHERE CAS IN
+  3  (SELECT CAS FROM AREA, DEPARTAMENTO
+  4  WHERE AREA.CD = DEPARTAMENTO.CD AND D='ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION');
+
+(COUNT(T))                                                                                                              
+----------                                                                                                              
+        12                                                                                                              
+
+SQL> SPOOL OFF
