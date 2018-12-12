@@ -392,3 +392,292 @@ SQL> SELECT DISTINCT(COUNT(T))
         12                                                                                                              
 
 SQL> SPOOL OFF
+SQL> SPOOL
+currently spooling to P6_PABLO_MARTIN.lst
+SQL> REM --9
+SQL> SELECT COUNT(DISTINCT(T))
+  2  FROM ASIGNATURA
+  3  WHERE CAS IN
+  4  (SELECT CAS FROM AREA, DEPARTAMENTO
+  5  WHERE AREA.CD=DEPARTAENTO.CD AND D='ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION');
+WHERE AREA.CD=DEPARTAENTO.CD AND D='ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION')
+              *
+ERROR at line 5:
+ORA-00904: "DEPARTAENTO"."CD": invalid identifier 
+
+
+SQL> SELECT COUNT(DISTINCT(T))
+  2  FROM ASIGNATURA
+  3  WHERE CAS IN
+  4  (SELECT CAS FROM AREA, DEPARTAMENTO
+  5  WHERE AREA.CD=DEPARTAMENTO.CD AND D='ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION');
+
+COUNT(DISTINCT(T))                                                              
+------------------                                                              
+                 4                                                              
+
+SQL> REM --10
+SQL> SELECT COUNT(P)
+  2  FROM AREA, PROFESOR
+  3  WHERE PROFESOR.CAR=AREA.CAR AND AR LIKE 'A%';
+
+  COUNT(P)                                                                      
+----------                                                                      
+         3                                                                      
+
+SQL> REM 11
+SQL> SELECT T, COUNT(CAS)
+  2  FROM ASIGNATURA
+  3  GROUP BY T ORDER BY T;
+
+T    COUNT(CAS)                                                                 
+---- ----------                                                                 
+GF            1                                                                 
+GII           7                                                                 
+GM            2                                                                 
+MII           2                                                                 
+
+SQL> REM --12
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE CT IN
+  4  (SELECT MAX(CT) FROM ASIGNATURA);
+
+A                                                                               
+--------------------------------------------------                              
+ENSENANZA DE LA MATEMATICA                                                      
+
+SQL> REM --13
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE CT IN
+  4  (SELECT MIN(CT) FROM ASIGNATURA);
+
+A                                                                               
+--------------------------------------------------                              
+INTELIGENCIA ARTIFICIAL                                                         
+ALMACENES DE DATOS                                                              
+MINERIA DE DATOS                                                                
+
+SQL> REM -14
+SQL> SELECT A CT+CP+CL CREDITOS
+  2  FROM ASIGNATURA;
+SELECT A CT+CP+CL CREDITOS
+           *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT A, CT+CP+CL CREDITOS
+  2  FROM ASIGNATURA;
+
+A                                                    CREDITOS                   
+-------------------------------------------------- ----------                   
+BASES DE DATOS                                              6                   
+INTELIGENCIA ARTIFICIAL                                     6                   
+ALMACENES DE DATOS                                          3                   
+MINERIA DE DATOS                                            3                   
+INFORMATICA BASICA                                          6                   
+ALGEBRA                                                     6                   
+CALCULO                                                     6                   
+OPTIMIZACION                                                6                   
+GESTION DE RIESGOS                                          6                   
+ASTRONOMIA                                                  6                   
+ENSENANZA DE LA MATEMATICA                                  6                   
+
+A                                                    CREDITOS                   
+-------------------------------------------------- ----------                   
+ANALISIS COMPLETO                                         7.5                   
+
+12 rows selected.
+
+SQL> SET LINESIZE 150
+SQL> SET PAGESIZE 30
+SQL> SELECT A, CT+CP+CL CREDITOS
+  2  FROM ASIGNATURA;
+
+A                                                    CREDITOS                                                                                         
+-------------------------------------------------- ----------                                                                                         
+BASES DE DATOS                                              6                                                                                         
+INTELIGENCIA ARTIFICIAL                                     6                                                                                         
+ALMACENES DE DATOS                                          3                                                                                         
+MINERIA DE DATOS                                            3                                                                                         
+INFORMATICA BASICA                                          6                                                                                         
+ALGEBRA                                                     6                                                                                         
+CALCULO                                                     6                                                                                         
+OPTIMIZACION                                                6                                                                                         
+GESTION DE RIESGOS                                          6                                                                                         
+ASTRONOMIA                                                  6                                                                                         
+ENSENANZA DE LA MATEMATICA                                  6                                                                                         
+ANALISIS COMPLETO                                         7.5                                                                                         
+
+12 rows selected.
+
+SQL> REM --15
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE CT+CP+CL IN
+  4  (SELECT MAX(CT+CP+CL) FROM ASIGNATURA);
+
+A                                                                                                                                                     
+--------------------------------------------------                                                                                                    
+ANALISIS COMPLETO                                                                                                                                     
+
+SQL> REM --16
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE CT+CP+CL IN
+  4  (SELECT MIN(CT+CP+CL) FROM ASIGNATURA);
+
+A                                                                                                                                                     
+--------------------------------------------------                                                                                                    
+ALMACENES DE DATOS                                                                                                                                    
+MINERIA DE DATOS                                                                                                                                      
+
+SQL> REM --17
+SQL> SELECT AR
+  2  FROM AREA
+  3  WHERE CAR IN
+  4  (SELECT CAR FROM ASIGNATURA WHERE CT+CP+CL IN
+  5  (SELECT MAX(CT+CP+CL) FROM ASIGNATURA));
+
+AR                                                                                                                                                    
+------------------------------------------------------------                                                                                          
+ANALISIS MATEMATICO                                                                                                                                   
+
+SQL> REM --18
+SQL> SELECT COUNT(DISTINCT(CAS)) ASIGNATURAS
+  2  FROM PLAN_DOCENTE
+  3  WHERE DNI='1111';
+
+ASIGNATURAS                                                                                                                                           
+-----------                                                                                                                                           
+          1                                                                                                                                           
+
+SQL> REM --19
+SQL> SELECT SUM(CTA+CPA+CLA) CREDITOS_DNI_1111
+  2  FROM PLAN_DOCENTE
+  3  WHERE DNI = '1111';
+
+CREDITOS_DNI_1111                                                                                                                                     
+-----------------                                                                                                                                     
+                9                                                                                                                                     
+
+SQL> SELECT SUM(CTA+CPA+CLA)
+  2  WHERE DNI = '1111';
+WHERE DNI = '1111'
+*
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT SUM(CTA+CPA+CLA) CREDITOS
+  2  WHERE DNI = '1111';
+WHERE DNI = '1111'
+*
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT SUM(CTA+CPA+CLA)
+  2  FROM PLAN_DOCENTE
+  3  WHERE DNI = '1111';
+
+SUM(CTA+CPA+CLA)                                                                                                                                      
+----------------                                                                                                                                      
+               9                                                                                                                                      
+
+SQL> REM --20
+SQL> SELECT P
+  2  FROM PROFESOR
+  3  WHERE DNI IN
+  4  (SELECT DNI FROM PLAN_DOCENTE
+  5  WHERE (CTA+CPA+CLA) IN (SELECT MAX(CTA+CPA+CLA)
+  6  FROM PLAN_DOCENTE) AND (FF IS NULL))
+  7  ;
+
+P                                                                                                                                                     
+------------------------------------------------------------                                                                                          
+MARIO                                                                                                                                                 
+
+SQL> REM --21
+SQL> SELECT AVG(COUNT(A))
+  2  FROM ASIGNATURA
+  3  GROUP BY CAR;
+
+AVG(COUNT(A))                                                                                                                                         
+-------------                                                                                                                                         
+          1.5                                                                                                                                         
+
+SQL> REM --22
+SQL> SELECT AVG(COUNT(P))
+  2  FROM PROFESOR, AREA
+  3  WHERE PROFESOR.CAR=AREA.CAR
+  4  GROUP BY CD;
+
+AVG(COUNT(P))                                                                                                                                         
+-------------                                                                                                                                         
+            3                                                                                                                                         
+
+SQL> REM --23
+SQL> SELECT S
+  2  
+SQL> SELECT AR
+  2  FROM AREA
+  3  WHERE CAR IN
+  4  (SELECT CAR FROM ASIGNATURA
+  5  GROUP BY CAR
+  6  HAVING COUNT(CAR)>3;
+HAVING COUNT(CAR)>3
+                  *
+ERROR at line 6:
+ORA-00907: missing right parenthesis 
+
+
+SQL> SELECT AR
+  2  FROM AREA
+  3  WHERE CAR IN
+  4  (SELECT CAR FROM ASIGNATURA
+  5  GROUP BY CAR
+  6  HAVING COUNT(CAR)>3);
+
+AR                                                                                                                                                    
+------------------------------------------------------------                                                                                          
+LENGUAJES Y SISTEMAS INFORMATICOS                                                                                                                     
+
+SQL> REM --24
+SQL> SELECT AR
+  2  FROM AREA
+  3  (SELECT CAR FROM ASIGNATURA
+  4  GROUP BY CAR
+  5  HAVING COUNT(CAR)>6);
+(SELECT CAR FROM ASIGNATURA
+ *
+ERROR at line 3:
+ORA-00936: missing expression 
+
+
+SQL> SELECT AR
+  2  FROM AREA
+  3  WHERE CAR IN
+  4  (SELECT CAR FROM ASIGNATURA
+  5  GROUP BY CAR
+  6  HAVING COUNT(CAR)>6);
+
+no rows selected
+
+SQL> SELECT D
+  2  FROM DEPARTAMENTO,AREA,PROFESOR
+  3  WHERE PROFESOR.CAR=AREA.CAR AND AREA.CD=DEPARTAMENTO.CD
+  4  GROUP BY D
+  5  HAVING COUNT(DNI)=(SELECT MIN(COUNT(DNI))
+  6  FROM DEPARTAMENTO,AREA,PROFESOR
+  7  WHERE PROFESOR.CAR=AREA.CAR AND AREA.CD=DEPARTAMENTO.CD
+  8  GROUP BY D);
+
+D                                                                                                                                                     
+------------------------------------------------------------                                                                                          
+ASTROFISICA                                                                                                                                           
+MATEMATICA FUNDAMENTAL                                                                                                                                
+
+SQL> SPOOL OFF
