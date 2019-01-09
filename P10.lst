@@ -1,0 +1,226 @@
+SQL> SPOOL
+currently spooling to P10.lst
+SQL> DECLARE
+  2  I3 NUMBER;
+  3  BEGIN
+  4  FOR I IN 1..10 LOOP
+  5  I3**I;
+  6  DBMS_OUTPUT.PUT_LINE('I: '||I||'CUBO '||I3);
+  7  END LOOP
+  8  ;
+  9  END;
+ 10  /
+I3**I;
+  *
+ERROR at line 5:
+ORA-06550: line 5, column 3: 
+PLS-00103: Encountered the symbol "*" when expecting one of the following: 
+:= . ( @ % ; 
+The symbol ":= was inserted before "*" to continue. 
+
+
+SQL> DECLARE
+  2  I3 NUMBER;
+  3  BEGIN
+  4  FOR I IN 1..10 LOOP
+  5  I3:=**I;
+  6  DBMS_OUTPUT.PUT_LINE('I: '||I||'CUBO '||I3);
+  7  END LOOP;
+  8  END;
+  9  /
+I3:=**I;
+    *
+ERROR at line 5:
+ORA-06550: line 5, column 5: 
+PLS-00103: Encountered the symbol "*" when expecting one of the following: 
+( - + case mod new not null <an identifier> 
+<a double-quoted delimited-identifier> <a bind variable> 
+continue avg count current exists max min prior sql stddev 
+sum variance execute forall merge time timestamp interval 
+date <a string literal with character set specification> 
+<a number> <a single-quoted SQL string> pipe 
+<an alternatively-quoted string literal with character set specification> 
+<an alternatively 
+
+
+SQL> DECLARE
+  2  I3 NUMBER;
+  3  BEGIN
+  4  FOR I IN 1..10 LOOP
+  5  I3:=I**3;
+  6  DBMS_OUTPUT.PUT_LINE('I: '||I||'CUBO '||I3);
+  7  END LOOP;
+  8  END;
+  9  /
+I: 1CUBO 1                                                                      
+I: 2CUBO 8                                                                      
+I: 3CUBO 27                                                                     
+I: 4CUBO 64                                                                     
+I: 5CUBO 125                                                                    
+I: 6CUBO 216                                                                    
+I: 7CUBO 343                                                                    
+I: 8CUBO 512                                                                    
+I: 9CUBO 729                                                                    
+I: 10CUBO 1000                                                                  
+
+PL/SQL procedure successfully completed.
+
+SQL> DECARE
+SP2-0042: unknown command "DECARE" - rest of line ignored.
+SQL> DECLARE
+  2  CURSOR C_PROP IS
+  3  SELECT *
+  4  FROM PROFESR;
+  5  V_PROF PROFESOR%ROWTYPE;
+  6  BEGIN
+  7  OPEN C_PROP;
+  8  LOOP
+  9  FETCH C_PROP INTO V_PROF;
+ 10  EXIT WHEN CPROF%NOTFOUND;
+ 11  DBMS_OUTPUT.PUT_LINE('DNI '||V_PROF.DNI||' NOMBRE '||V_PROF.P);
+ 12  END LOOP;
+ 13  CLOSE C_PROP;
+ 14  END;
+ 15  /
+FROM PROFESR;
+     *
+ERROR at line 4:
+ORA-06550: line 4, column 6: 
+PL/SQL: ORA-00942: table or view does not exist 
+ORA-06550: line 3, column 1: 
+PL/SQL: SQL Statement ignored 
+ORA-06550: line 10, column 11: 
+PLS-00201: identifier 'CPROF' must be declared 
+ORA-06550: line 10, column 1: 
+PL/SQL: Statement ignored 
+
+
+SQL> DECLARE
+  2  CURSOR C_PROP IS
+  3  SELECT *
+  4  FROM PROFESOR;
+  5  V_PROF PROFESOR%ROWTYPE;
+  6  BEGIN
+  7  OPEN C_PROP;
+  8  LOOP
+  9  FETCH C_PROP INTO V_PROF;
+ 10  EXIT WHEN CPROF%NOTFOUND;
+ 11  DBMS_OUTPUT.PUT_LINE('DNI '||V_PROF.DNI||' NOMBRE '||V_PROF.P);
+ 12  END LOOP;
+ 13  CLOSE C_PROP;
+ 14  END;
+ 15  /
+EXIT WHEN CPROF%NOTFOUND;
+          *
+ERROR at line 10:
+ORA-06550: line 10, column 11: 
+PLS-00201: identifier 'CPROF' must be declared 
+ORA-06550: line 10, column 1: 
+PL/SQL: Statement ignored 
+
+
+SQL> DECLARE
+  2  CURSOR C_PROP IS
+  3  SELECT *
+  4  FROM PROFESOR;
+  5  V_PROF PROFESOR%ROWTYPE;
+  6  BEGIN
+  7  OPEN C_PROP;
+  8  LOOP
+  9  FETCH C_PROP INTO V_PROF;
+ 10  EXIT WHEN C_PROP%NOTFOUND;
+ 11  DBMS_OUTPUT.PUT_LINE('DNI '||V_PROF.DNI||' NOMBRE '||V_PROF.P);
+ 12  END LOOP;
+ 13  CLOSE C_PROP;
+ 14  END;
+ 15  /
+DNI 1111 NOMBRE JUAN                                                            
+DNI 2222 NOMBRE CARLOS                                                          
+DNI 3333 NOMBRE PEDRO                                                           
+DNI 4444 NOMBRE MARIA                                                           
+DNI 5555 NOMBRE IVAN                                                            
+DNI 6666 NOMBRE CARMEN                                                          
+DNI 7777 NOMBRE MARIO                                                           
+DNI 8888 NOMBRE FRANCISCO                                                       
+DNI 9999 NOMBRE ANGELA                                                          
+DNI 1010 NOMBRE DAVID                                                           
+DNI 2020 NOMBRE SOLEDAD                                                         
+DNI 3030 NOMBRE JOSE MANUEL                                                     
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2  CURSOR C_PROP IS
+  3  SELECT *
+  4  FROM PROFESOR;
+  5  BEGIN
+  6  FOR V_PROP IN C_PROP LOOP
+  7  DBMS_OUTPUT.PUT_LINE('DNI '||V_PROF.DNI||' NOMBRE '||V_PROF.P);
+  8  END LOOP;
+  9  END;
+ 10  /
+DBMS_OUTPUT.PUT_LINE('DNI '||V_PROF.DNI||' NOMBRE '||V_PROF.P);
+                             *
+ERROR at line 7:
+ORA-06550: line 7, column 30: 
+PLS-00201: identifier 'V_PROF.DNI' must be declared 
+ORA-06550: line 7, column 1: 
+PL/SQL: Statement ignored 
+
+
+SQL> DECLARE
+  2  CURSOR C_PROP IS
+  3  SELECT *
+  4  FROM PROFESOR;
+  5  BEGIN
+  6  FOR V_PROP IN C_PROP LOOP
+  7  DBMS_OUTPUT.PUT_LINE('DNI '||V_PROP.DNI||' NOMBRE '||V_PROP.P);
+  8  END LOOP;
+  9  END;
+ 10  /
+DNI 1111 NOMBRE JUAN                                                            
+DNI 2222 NOMBRE CARLOS                                                          
+DNI 3333 NOMBRE PEDRO                                                           
+DNI 4444 NOMBRE MARIA                                                           
+DNI 5555 NOMBRE IVAN                                                            
+DNI 6666 NOMBRE CARMEN                                                          
+DNI 7777 NOMBRE MARIO                                                           
+DNI 8888 NOMBRE FRANCISCO                                                       
+DNI 9999 NOMBRE ANGELA                                                          
+DNI 1010 NOMBRE DAVID                                                           
+DNI 2020 NOMBRE SOLEDAD                                                         
+DNI 3030 NOMBRE JOSE MANUEL                                                     
+
+PL/SQL procedure successfully completed.
+
+SQL> CREATE PROCEDURE AREAS_DEP(V_CD AREA.CA%TYPE)
+  2  IS
+  3  CURSOR C_AR(V) IS
+  4  SELECT AR
+  5  FRM AREA
+  6  WHERE CD = V;
+  7  BEGIN
+  8  FOR NAREA IN C_AR(V_CD) LOOP
+  9  DBMS.OUTPUT.PUT_LINE(NAREA.AR);
+ 10  END LOOP;
+ 11  END;
+ 12  /
+
+Warning: Procedure created with compilation errors.
+
+SQL> CREATE PROCEDURE AREAS_TRUE(V_CD AREA.CA%TYPE)
+  2  IS
+  3  CURSOR C_AR(V AREAS.CD%LIKE) IS
+  4  SELECT AR
+  5  FROM AREA
+  6  WHERE CD = V;
+  7  BEGIN
+  8  FOR NAREA IN C_AR(V_CD) LOOP
+  9  DBMS.OUTPUT.PUT_LINE(NAREA.AR);
+ 10  END LOOP;
+ 11  END;
+ 12  /
+
+Warning: Procedure created with compilation errors.
+
+SQL> SPOOL OF
