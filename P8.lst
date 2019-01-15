@@ -311,3 +311,138 @@ ORA-00942: table or view does not exist
 
 SQL> --ME QUEDE EN LA 24
 SQL> SPOOL OFF
+SQL> SPOOL
+currently spooling to P8.lst
+SQL> CREATE INDEX INDICE1
+  2  ON PROFESOR(P);
+
+Index created.
+
+SQL> SELECT DNI
+  2  FROM PROFESOR
+  3  WHERE P="JUAN";
+WHERE P="JUAN"
+        *
+ERROR at line 3:
+ORA-00904: "JUAN": invalid identifier 
+
+
+SQL> SELECT DNI
+  2  FROM PROFESOR
+  3  WHERE P='JUAN';
+
+       DNI                                                                      
+----------                                                                      
+      1111                                                                      
+
+SQL> DROP INDEX INDICE1;
+
+Index dropped.
+
+SQL> REM 26
+SQL> CREATE INDEX INDICE2
+  2  ON VISTA1(CAR);
+ON VISTA1(CAR)
+   *
+ERROR at line 2:
+ORA-00942: table or view does not exist 
+
+
+SQL> REM 27
+SQL> GRANT SELECT
+  2  ON DEPARTAMENTO, AREA, ASIGNATURA, TITULACION
+  3  TO ALUMNO;
+ON DEPARTAMENTO, AREA, ASIGNATURA, TITULACION
+               *
+ERROR at line 2:
+ORA-00990: missing or invalid privilege 
+
+
+SQL> GRANT SELECT
+  2  ON DEPARTAMENTO
+  3  TO ALUMNO;
+
+Grant succeeded.
+
+SQL> GRANT SELECT
+  2  ON AREA
+  3  TO ALUMNO;
+
+Grant succeeded.
+
+SQL> GRANT SELECT
+  2  ON ASIGNATURA
+  3  TO ALUMNO;
+
+Grant succeeded.
+
+SQL> GRANT SELECT
+  2  ON TITULACION
+  3  TO ALUMNO;
+
+Grant succeeded.
+
+SQL> GRANT INSERT, UPDATE, DELETE
+  2  ON DEPARTAMENTO
+  3  TO ALUMNO
+  4  ;
+
+Grant succeeded.
+
+SQL> GRANT INSERT, UPDATE, DELETE ON AREA TO ALUMNO;
+
+Grant succeeded.
+
+SQL> GRANT INSERT, UPDATE, DELETE ON ASIGNATURA TO ALUMNO;
+
+Grant succeeded.
+
+SQL> GRANT INSERT, UPDATE, DELETE ON TITULACION TO ALUMNO;
+
+Grant succeeded.
+
+SQL> GRANT INSERT, UPDATE, DELETE ON DEPARTAMENTO TO ALUMNO;
+
+Grant succeeded.
+
+SQL> COMMIT
+  2  ;
+
+Commit complete.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> CONNECT ALUMNO/XXXXX
+ERROR:
+ORA-12162: TNS:net service name is incorrectly specified 
+
+
+Warning: You are no longer connected to ORACLE.
+SQL> CONNECT ALUMNO/xxxxx;
+ERROR:
+ORA-12162: TNS:net service name is incorrectly specified 
+
+
+SQL> CONNECT alumno/xxxxx;
+ERROR:
+ORA-12162: TNS:net service name is incorrectly specified 
+
+
+SQL> CONNECT ALUMNO/xxxxx
+ERROR:
+ORA-12162: TNS:net service name is incorrectly specified 
+
+
+SQL> CONNECT alumno/xxxxx
+ERROR:
+ORA-12162: TNS:net service name is incorrectly specified 
+
+
+SQL> CONNECT ALUMNO/xxxxx
+ERROR:
+ORA-12162: TNS:net service name is incorrectly specified 
+
+
+SQL> SPOOL OFF
