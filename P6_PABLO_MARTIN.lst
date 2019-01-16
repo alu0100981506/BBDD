@@ -681,3 +681,12 @@ ASTROFISICA
 MATEMATICA FUNDAMENTAL                                                                                                                                
 
 SQL> SPOOL OFF
+SQL> SELECT COUNT(DISTINCT(T))
+  2  FROM DEPARTAMENTO NATURAL JOIN AREA NATURAL JOIN ASIGNATURA
+  3  WHERE D='ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION';
+
+COUNT(DISTINCT(T))                                                              
+------------------                                                              
+                 2                                                              
+
+SQL> SPOOL OFF
