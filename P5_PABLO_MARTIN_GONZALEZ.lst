@@ -956,3 +956,27 @@ MATEMATICA FUNDAMENTAL                                       IVAN
 12 rows selected.
 
 SQL> SPOOL OFF
+SQL> SPOOL
+currently spooling to P5_PABLO_MARTIN_GONZALEZ.lst
+SQL> SELECT P
+  2  FROM PROFESOR
+  3  WHERE DNI IN
+  4  (SELECT DNI FROM PLAN_DOCENTE NATURAL JOIN ASIGNATURA WHERE A = 'OPTIMIZACION');
+
+P                                                                               
+------------------------------------------------------------                    
+JUAN                                                                            
+JOSE MANUEL                                                                     
+
+SQL> SELECT P
+  2  FROM PROFESOR
+  3  WHERE DNI IN
+  4  (SELECT DNI FROM PLAN_DOCENTE NATURAL JOIN ASIGNATURA WHERE A = 'OPTIMIZACION')
+  5  ORDER BY P;
+
+P                                                                               
+------------------------------------------------------------                    
+JOSE MANUEL                                                                     
+JUAN                                                                            
+
+SQL> SPOOL OFF
