@@ -690,3 +690,12 @@ COUNT(DISTINCT(T))
                  2                                                              
 
 SQL> SPOOL OFF
+SQL> SELECT P
+  2  FROM PROFESOR NATURAL JOIN PLAN_DOCENTE
+  3  WHERE (SELECT MAX(CTA+CPA+CLA) FROM PLAN_DOCENTE) = CTA+CPA+CLA AND FF IS NULL;
+
+P                                                                               
+------------------------------------------------------------                    
+MARIO                                                                           
+
+SQL> SPOOL OFF
