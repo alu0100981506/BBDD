@@ -980,3 +980,154 @@ JOSE MANUEL
 JUAN                                                                            
 
 SQL> SPOOL OFF
+SQL> SELECT D, P
+  2  FROM AREA NATURAL JOIN DEPARTAMENTO NATURAL JOIN PROFESOR
+  3  ORDER BY D;
+
+D                                                                               
+------------------------------------------------------------                    
+P                                                                               
+------------------------------------------------------------                    
+ANALISIS MATEMATICO                                                             
+MARIO                                                                           
+                                                                                
+ANALISIS MATEMATICO                                                             
+CARINA                                                                          
+                                                                                
+ANALISIS MATEMATICO                                                             
+ANGELA                                                                          
+                                                                                
+
+D                                                                               
+------------------------------------------------------------                    
+P                                                                               
+------------------------------------------------------------                    
+ANALISIS MATEMATICO                                                             
+FRANCISCO                                                                       
+                                                                                
+ASTROFISICA                                                                     
+CARMEN                                                                          
+                                                                                
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION                              
+JOSE MANUEL                                                                     
+                                                                                
+
+D                                                                               
+------------------------------------------------------------                    
+P                                                                               
+------------------------------------------------------------                    
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION                              
+CARMELO                                                                         
+                                                                                
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION                              
+SOLEDAD                                                                         
+                                                                                
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION                              
+JUAN                                                                            
+                                                                                
+
+D                                                                               
+------------------------------------------------------------                    
+P                                                                               
+------------------------------------------------------------                    
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION                              
+DAVID                                                                           
+                                                                                
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION                              
+MARIA                                                                           
+                                                                                
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION                              
+PEDRO                                                                           
+                                                                                
+
+D                                                                               
+------------------------------------------------------------                    
+P                                                                               
+------------------------------------------------------------                    
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION                              
+CARLOS                                                                          
+                                                                                
+MATEMATICA FUNDAMENTAL                                                          
+IVAN                                                                            
+                                                                                
+
+14 rows selected.
+
+SQL> SET LINESIZE 300
+SQL> SET PAGESIZE 300
+SQL> SELECT D, P
+  2  FROM AREA NATURAL JOIN DEPARTAMENTO NATURAL JOIN PROFESOR
+  3  ORDER BY D;
+
+D                                                            P                                                                                                                                                                                                                                              
+------------------------------------------------------------ ------------------------------------------------------------                                                                                                                                                                                   
+ANALISIS MATEMATICO                                          MARIO                                                                                                                                                                                                                                          
+ANALISIS MATEMATICO                                          CARINA                                                                                                                                                                                                                                         
+ANALISIS MATEMATICO                                          ANGELA                                                                                                                                                                                                                                         
+ANALISIS MATEMATICO                                          FRANCISCO                                                                                                                                                                                                                                      
+ASTROFISICA                                                  CARMEN                                                                                                                                                                                                                                         
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           JOSE MANUEL                                                                                                                                                                                                                                    
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           CARMELO                                                                                                                                                                                                                                        
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           SOLEDAD                                                                                                                                                                                                                                        
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           JUAN                                                                                                                                                                                                                                           
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           DAVID                                                                                                                                                                                                                                          
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           MARIA                                                                                                                                                                                                                                          
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           PEDRO                                                                                                                                                                                                                                          
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           CARLOS                                                                                                                                                                                                                                         
+MATEMATICA FUNDAMENTAL                                       IVAN                                                                                                                                                                                                                                           
+
+14 rows selected.
+
+SQL> SELECT D, P
+  2  FROM AREA NATURAL JOIN DEPARTAMENTO NATURAL JOIN PROFESOR
+  3  ORDER BY D,P;
+
+D                                                            P                                                                                                                                                                                                                                              
+------------------------------------------------------------ ------------------------------------------------------------                                                                                                                                                                                   
+ANALISIS MATEMATICO                                          ANGELA                                                                                                                                                                                                                                         
+ANALISIS MATEMATICO                                          CARINA                                                                                                                                                                                                                                         
+ANALISIS MATEMATICO                                          FRANCISCO                                                                                                                                                                                                                                      
+ANALISIS MATEMATICO                                          MARIO                                                                                                                                                                                                                                          
+ASTROFISICA                                                  CARMEN                                                                                                                                                                                                                                         
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           CARLOS                                                                                                                                                                                                                                         
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           CARMELO                                                                                                                                                                                                                                        
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           DAVID                                                                                                                                                                                                                                          
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           JOSE MANUEL                                                                                                                                                                                                                                    
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           JUAN                                                                                                                                                                                                                                           
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           MARIA                                                                                                                                                                                                                                          
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           PEDRO                                                                                                                                                                                                                                          
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           SOLEDAD                                                                                                                                                                                                                                        
+MATEMATICA FUNDAMENTAL                                       IVAN                                                                                                                                                                                                                                           
+
+14 rows selected.
+
+SQL> SELECT DISTICT(P)
+  2  FROM PROFESOR
+  3  WHERE DNI IN
+  4  SELECT DNI FROM PLAN_DOCENTE MINUS SELECT DNI FROM PLAN_DOCENTE WHERE FF IS NULL;
+SELECT DNI FROM PLAN_DOCENTE MINUS SELECT DNI FROM PLAN_DOCENTE WHERE FF IS NULL
+*
+ERROR at line 4:
+ORA-00936: missing expression 
+
+
+SQL> SELECT DISTICT(P)
+  2  FROM PROFESOR
+  3  WHERE DNI IN
+  4  (SELECT DNI FROM PLAN_DOCENTE MINUS SELECT DNI FROM PLAN_DOCENTE WHERE FF IS NULL);
+SELECT DISTICT(P)
+       *
+ERROR at line 1:
+ORA-00904: "DISTICT": invalid identifier 
+
+
+SQL> SELECT DISTINCT(P)
+  2  FROM PROFESOR
+  3  WHERE DNI IN
+  4  (SELECT DNI FROM PLAN_DOCENTE MINUS SELECT DNI FROM PLAN_DOCENTE WHERE FF IS NULL);
+
+P                                                                                                                                                                                                                                                                                                           
+------------------------------------------------------------                                                                                                                                                                                                                                                
+CARMEN                                                                                                                                                                                                                                                                                                      
+
+SQL> SPOOL OFF
